@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ChamadoModel>
+
+<h1>Chamados</h1>
+
+@if (!string.IsNullOrEmpty((String)TempData["mensagemSucesso"]))
+{
+    <div class="alert alert-warning" role="alert">@TempData["mensagemSucesso"]</div>
+}
+
+<p>
+    <a asp-action="Create" asp-controller="Chamado">Novo Chamado</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>DescricaoChamado</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var chamado in Model)
+        {
+            <tr>
+                <td>
+                    <label>@chamado.Id</label>
+                </td>
+                <td>
+                    <label>@chamado.Nome</label>
+                </td>
+                <td>
+                    <label>@chamado.Email</label>
+                </td>
+                <td>
+                    <label>@chamado.DescricaoChamado</label>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Chamado" asp-route-id="@chamado.Id">Editar</a>
+                    <a asp-action="Detail" asp-controller="Chamado" asp-route-id="@chamado.Id">Consultar</a>
+                    <a asp-action="Delete" asp-controller="Chamado" asp-route-id="@chamado.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
